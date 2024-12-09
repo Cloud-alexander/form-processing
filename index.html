@@ -39,6 +39,18 @@
       </div>
 
       <div>
+        <label for="Address">Address</label><br>
+        <input type="text" name="Address" id="Address" placeholder="Address" required autofocus>
+      </div>
+
+      
+      <div>
+        <label for="City">City</label><br>
+        <input type="text" name="City" id="City" placeholder="City" required autofocus>
+      </div>
+
+
+      <div>
         <label for="Phone">Phone</label><br>
         <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="xxx-xxx-xxxx" required>
       </div>
@@ -57,11 +69,10 @@
         <fieldset>
           <legend>Interested In?</legend>
           <label>
-            <input type="checkbox" name="Interested_In" value="Website"> Website<br>
-            <input type="checkbox" name="Interested_In" value="Shopping Cart"> Shopping Cart<br>
-            <input type="checkbox" name="Interested_In" value="JS Thingy"> JS Thingy<br>
-            <input type="checkbox" name="Interested_In" value="Lollipop"> Customary Lollipop
-            <input type="radio" name="Mailing_List" value="No"> No
+            <input type="checkbox" name="Interested_In" value="Cannabinoids"> Cannabinoids<br>
+            <input type="checkbox" name="Interested_In" value="Food"> Food<br>
+            <input type="checkbox" name="Interested_In" value="Guitars"> Guitars<br>
+            <input type="checkbox" name="Interested_In" value="Mexican Candy"> Mexican Candy<br> 
           </label>
         </fieldset>
       </div>
@@ -69,11 +80,12 @@
       <div>
         <label for="State">State</label><br>
         <select id="State" name="State" required>
-          <option value="">lLease enter State</option>
+          <option value="">Please enter State</option>
           <option value="Ak">Alaska</option>
           <option value="CA">California</option>
           <option value="OR">Oregon</option>
           <option value="WA">Washington</option>
+          <option value="HI">Hawaii</option>
         </select>
       </div>
 
@@ -106,6 +118,17 @@
 
       urlParams.forEach(function(value,key){
 
+        switch(key){
+          case "First_Name":
+          case "Last_Name":
+          case "Address":
+          case "City":
+            value = titleCase(value);
+          break;
+
+        }
+      
+
         key = key.split("_").join(" ");
         myOutput += `<p>${key}: ${value}</p>`;
       });
@@ -113,6 +136,18 @@
       myOutput += `</div>`;
       document.querySelector("#output").innerHTML = myOutput;
     }
+
+      function titleCase(str){
+    str = str.split(" ");
+
+    for(let x=0;x<str.length;x++){
+        str[x] = str[x].charAt(0).toUpperCase() + str[x].slice(1).toLowerCase();
+  } 
+
+    str = str.join(' ');
+    return str;
+  }
+
   </script>  
  </body>
 </html>
